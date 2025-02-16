@@ -1,124 +1,122 @@
-<!-- public/pages/community.html -->
-<div class="community-container">
-    <section class="hero-section">
-        <div class="hero-content">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunidad • Binners</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/community.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">⬡</span>
+                <span>binners</span>
+            </a>
+            <div class="nav-links">
+                <a href="/pages/bins.html" class="nav-link">Bins</a>
+                <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
+                <a href="/pages/community.html" class="nav-link">Comunidad</a>
+            </div>
+            <a href="https://discord.gg/aeolous" class="btn btn-discord">
+                <i class="fab fa-discord"></i>
+                <span>Unirse</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="community-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-bg"></div>
             <div class="server-info">
                 <div class="server-logo">
                     <i class="fas fa-crown"></i>
                 </div>
-                <h1>Aeolous Rewards</h1>
+                
+                <h1 class="server-title">Aeolous Rewards</h1>
                 <p class="server-description">
-                    El servidor ideal para obtener cuentas de Disney, Netflix, HBO Max, 
-                    Spotify y más. ¡Únete a nuestra comunidad premium!
+                    El servidor ideal para obtener cuentas premium de Disney+, Netflix, 
+                    HBO Max, Spotify y más. ¡Únete a nuestra comunidad exclusiva!
                 </p>
-
+                
                 <div class="server-stats">
                     <div class="stat-item">
-                        <i class="fas fa-users"></i>
-                        <span class="stat-number">2,760</span>
-                        <span class="stat-label">Miembros</span>
+                        <div class="stat-number">2.7K+</div>
+                        <div class="stat-label">Miembros</div>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-circle online"></i>
-                        <span class="stat-number">639</span>
-                        <span class="stat-label">Online</span>
+                        <div class="stat-number">639</div>
+                        <div class="stat-label">Online</div>
                     </div>
                     <div class="stat-item">
-                        <i class="fas fa-star"></i>
-                        <span class="stat-number">500+</span>
-                        <span class="stat-label">Sorteos Realizados</span>
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Sorteos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100K</div>
+                        <div class="stat-label">Robux</div>
                     </div>
                 </div>
-
-                <a href="https://discord.gg/aeolous" class="join-server-btn">
+                
+                <a href="https://discord.gg/aeolous" class="join-discord">
                     <i class="fab fa-discord"></i>
                     <span>Unirse al Servidor</span>
                 </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="features-section">
-        <div class="container">
-            <h2>Características Premium</h2>
+        <!-- Features Section -->
+        <section class="features-section">
+            <h2 class="features-title">Características Premium</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-gift"></i>
                     </div>
                     <h3>Sorteos Diarios</h3>
-                    <p>Nitro gratuito y premios exclusivos en sorteos verificados</p>
+                    <p>Participa en sorteos diarios de Nitro, cuentas premium y más recompensas exclusivas.</p>
                 </div>
-
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-coins"></i>
                     </div>
                     <h3>Eventos Robux</h3>
-                    <p>Gana Robux por invitaciones y participación activa</p>
+                    <p>Gana Robux participando en eventos especiales y por invitar a nuevos miembros.</p>
                 </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Chateo general y comunidad activa las 24 horas</p>
-                </div>
-
+                
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-shield-alt"></i>
                     </div>
                     <h3>100% Seguro</h3>
-                    <p>Sin fines de lucro, todo verificado por el equipo</p>
+                    <p>Servidor verificado y moderado 24/7 para garantizar una experiencia segura.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Comunidad Activa</h3>
+                    <p>Chatea y comparte con otros miembros en una comunidad amigable y activa.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <section class="about-section">
-        <div class="container">
-            <div class="about-content">
-                <h2>Sobre Nosotros</h2>
-                <p>
-                    Aeolous Rewards es un servidor de Discord que se especializa en 
-                    proporcionar beneficios premium como Robux, Nitro y cuentas mediante 
-                    sorteos legítimos. Mantenemos una presentación elegante y profesional 
-                    para que te sientas cómodo, con actividades innovadoras del equipo Aeolous.
-                </p>
-
-                <div class="server-features">
-                    <div class="feature-item">
-                        <i class="fas fa-check"></i>
-                        <span>Sorteos Verificados</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check"></i>
-                        <span>Sin Fines de Lucro</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check"></i>
-                        <span>Soporte 24/7</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="languages-section">
-        <div class="container">
-            <h3>Idiomas Soportados</h3>
-            <div class="language-pills">
-                <div class="language-pill">
-                    <img src="/images/flags/us.png" alt="English" class="language-flag">
-                    <span>English</span>
-                </div>
-                <div class="language-pill">
-                    <img src="/images/flags/es.png" alt="Español" class="language-flag">
-                    <span>Español</span>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+    <script src="../js/community.js"></script>
+</body>
+</html>

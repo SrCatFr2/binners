@@ -1,0 +1,102 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/bins/list",
+      "methods": ["GET"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/bins/add",
+      "methods": ["POST"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/bins/verify",
+      "methods": ["POST"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/bins/update",
+      "methods": ["PUT"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/bins/delete",
+      "methods": ["DELETE"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/tutorials/list",
+      "methods": ["GET"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/tutorials/add",
+      "methods": ["POST"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/community/stats",
+      "methods": ["GET"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/community/events",
+      "methods": ["GET"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/auth/discord",
+      "methods": ["GET", "POST"],
+      "dest": "index.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/bins(\\.html)?",
+      "dest": "/public/pages/bins.html"
+    },
+    {
+      "src": "/tutorials(\\.html)?",
+      "dest": "/public/pages/tutorials.html"
+    },
+    {
+      "src": "/community(\\.html)?",
+      "dest": "/public/pages/community.html"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html"
+    }
+  ],
+  "env": {
+    "DISCORD_CLIENT_ID": "@discord_client_id",
+    "DISCORD_CLIENT_SECRET": "@discord_client_secret",
+    "JWT_SECRET": "@jwt_secret"
+  }
+}

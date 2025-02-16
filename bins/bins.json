@@ -1,16 +1,9 @@
 [
   {
-    "image": "/images/netflix.png",
-    "bin": "41471814378082xx|04|2025",
-    "platform": "Netflix",
+    "image": "/images/prime.png",
+    "bin": "434769026852xxxx|09|2029",
+    "platform": "Prime Video",
     "location": "Estados Unidos",
-    "tip": "Usar con VPN residencial"
-  },
-  {
-    "image": "/images/disney.png",
-    "bin": "51234567890123xx|05|2026",
-    "platform": "Disney+",
-    "location": "Argentina",
-    "tip": "Funciona mejor con residential IP"
+    "tip": "Sacar live CCN"
   }
 ]
