@@ -12,22 +12,12 @@
   ],
   "routes": [
     {
-      "src": "/api/bins/list",
+      "src": "/api/bins",
       "methods": ["GET"],
       "dest": "index.js"
     },
     {
-      "src": "/api/bins/add",
-      "methods": ["POST"],
-      "dest": "index.js"
-    },
-    {
-      "src": "/api/bins/verify",
-      "methods": ["POST"],
-      "dest": "index.js"
-    },
-    {
-      "src": "/api/tutorials/list",
+      "src": "/api/tutorials",
       "methods": ["GET"],
       "dest": "index.js"
     },
@@ -37,19 +27,15 @@
       "dest": "index.js"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/bins(\\.html)?",
+      "src": "/bins",
       "dest": "/public/pages/bins.html"
     },
     {
-      "src": "/tutorials(\\.html)?",
+      "src": "/tutorials",
       "dest": "/public/pages/tutorials.html"
     },
     {
-      "src": "/community(\\.html)?",
+      "src": "/community",
       "dest": "/public/pages/community.html"
     },
     {
@@ -66,7 +52,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/public/index.html"
+      "dest": "/public/$1"
     }
   ]
 }
