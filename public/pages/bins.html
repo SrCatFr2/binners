@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bins Premium • Binners</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/layout.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/pages/bins.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="noise-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="/" class="logo">
+                <span class="logo-icon">⬡</span>
+                <span>binners</span>
+            </a>
+            <div class="nav-links">
+                <a href="/pages/bins.html" class="nav-link">Bins</a>
+                <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
+                <a href="/pages/community.html" class="nav-link">Comunidad</a>
+            </div>
+            <a href="https://discord.gg/aeolous" class="btn btn-discord">
+                <i class="fab fa-discord"></i>
+                <span>Unirse</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="bins-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-content">
+                <div class="search-wrapper">
+                    <i class="fas fa-search input-icon"></i>
+                    <input type="text" class="search-input" placeholder="Buscar bins...">
+                </div>
+                
+                <div class="categories">
+                    <h3>Plataformas</h3>
+                    <div class="category-pills">
+                        <button class="category-pill active" data-category="all">Todos</button>
+                        <button class="category-pill" data-category="netflix">Netflix</button>
+                        <button class="category-pill" data-category="disney">Disney+</button>
+                        <button class="category-pill" data-category="spotify">Spotify</button>
+                        <button class="category-pill" data-category="hbo">HBO Max</button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenido Principal -->
+        <main class="bins-content">
+            <header class="section-header">
+                <h1>Premium Bins Collection</h1>
+                <div class="status-info">
+                    <div class="status-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Bins Verificados</span>
+                    </div>
+                    <div class="status-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Actualizado: <time>Febrero 2025</time></span>
+                    </div>
+                </div>
+            </header>
+
+            <div id="binsGrid" class="bins-grid">
+                <!-- Los bins se cargarán dinámicamente aquí -->
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/bins.js"></script>
+</body>
+</html>
