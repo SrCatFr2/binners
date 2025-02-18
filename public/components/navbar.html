@@ -1,16 +1,30 @@
 <!-- public/components/navbar.html -->
 <nav class="navbar">
-    <div class="nav-content">
+    <div class="container nav-content">
         <a href="/" class="logo">
             <span class="logo-icon">⬡</span>
-            <span class="logo-text">binners</span>
+            <span>binners</span>
         </a>
+
+        <!-- Botón de menú móvil -->
+        <button class="menu-button lg:hidden" aria-label="Menú">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <div class="nav-links">
-            <a href="/bins" class="nav-link">Bins</a>
-            <a href="/tutorials" class="nav-link">Tutoriales</a>
-            <a href="/community" class="nav-link">Comunidad</a>
+            <a href="/pages/bins.html" class="nav-link">Bins</a>
+            <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
+            <a href="/pages/community.html" class="nav-link">Comunidad</a>
+            
+            <!-- Botón de Discord en menú móvil -->
+            <a href="https://discord.gg/aeolous" class="btn btn-discord mobile-only">
+                <i class="fab fa-discord"></i>
+                <span>Unirse</span>
+            </a>
         </div>
-        <a href="https://discord.gg/aeolous" class="join-discord">
+
+        <!-- Botón de Discord en desktop -->
+        <a href="https://discord.gg/aeolous" class="btn btn-discord desktop-only">
             <i class="fab fa-discord"></i>
             <span>Unirse</span>
         </a>

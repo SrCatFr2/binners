@@ -1,15 +1,16 @@
+<!-- public/pages/bins.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bins Premium • Binners</title>
+    <title>Premium Bins • Binners</title>
     
     <!-- CSS -->
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/pages/bins.css">
+    <link rel="stylesheet" href="../css/pages/bins-premium.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,18 +18,57 @@
 <body>
     <div class="bg-gradient"></div>
     <div class="noise-overlay"></div>
+    <div id="particles-js"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+    <!-- Overlay -->
+    <!-- bins.html - Fragmento de la sección del sidebar y botón de menú móvil -->
+    <!-- Asegúrate de colocar esta sección en tu HTML, antes de otros scripts -->
+    <button id="menuButton" class="menu-button mobile-only" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="sidebarOverlay" class="sidebar-overlay mobile-only"></div>
+
+    <aside id="sidebar" class="sidebar mobile-only">
+      <div class="sidebar-header">
+        <a href="/" class="logo">
+          <span class="logo-icon">⬡</span>
+          <span>binners</span>
+        </a>
+      </div>
+      <nav class="sidebar-links">
+        <a href="/pages/bins.html" class="sidebar-link active">
+          <i class="fas fa-credit-card"></i>
+          <span>Bins</span>
+        </a>
+        <a href="/pages/tutorials.html" class="sidebar-link">
+          <i class="fas fa-play-circle"></i>
+          <span>Tutoriales</span>
+        </a>
+        <a href="https://discord.gg/aeolous" class="sidebar-link">
+          <i class="fab fa-discord"></i>
+          <span>Discord</span>
+        </a>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay mobile-only"></div>
+
+    <button class="menu-button" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="sidebar-overlay"></div>
+
+    <!-- Navbar Desktop -->
+    <nav class="navbar desktop-only">
         <div class="container nav-content">
             <a href="/" class="logo">
                 <span class="logo-icon">⬡</span>
                 <span>binners</span>
             </a>
             <div class="nav-links">
-                <a href="/pages/bins.html" class="nav-link">Bins</a>
+                <a href="/pages/bins.html" class="nav-link active">Bins</a>
                 <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
-                <a href="/pages/community.html" class="nav-link">Comunidad</a>
             </div>
             <a href="https://discord.gg/aeolous" class="btn btn-discord">
                 <i class="fab fa-discord"></i>
@@ -37,51 +77,113 @@
         </div>
     </nav>
 
-    <div class="bins-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-content">
-                <div class="search-wrapper">
-                    <i class="fas fa-search input-icon"></i>
-                    <input type="text" class="search-input" placeholder="Buscar bins...">
+    <!-- Contenido Principal -->
+    <main class="bins-container">
+        <!-- Filtros Desktop -->
+        <aside class="filters-panel desktop-only">
+            <div class="filters-header">
+                <h3>Filtros</h3>
+                <button class="clear-filters">
+                    <i class="fas fa-undo"></i>
+                    Limpiar
+                </button>
+            </div>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Buscar bins...">
+            </div>
+
+            <div class="filter-section">
+                <h4>Plataformas</h4>
+                <div class="platform-filters">
+                    <button class="platform-btn active" data-platform="all">
+                        <span class="platform-icon">
+                            <i class="fas fa-th-large"></i>
+                        </span>
+                        <span>Todos</span>
+                    </button>
+                    <button class="platform-btn" data-platform="netflix">
+                        <img src="../images/platforms/netflix.png" alt="Netflix">
+                        <span>Netflix</span>
+                    </button>
+                    <button class="platform-btn" data-platform="disney">
+                        <img src="../images/platforms/disney.png" alt="Disney+">
+                        <span>Disney+</span>
+                    </button>
+                    <button class="platform-btn" data-platform="spotify">
+                        <img src="../images/platforms/spotify.png" alt="Spotify">
+                        <span>Spotify</span>
+                    </button>
                 </div>
-                
-                <div class="categories">
-                    <h3>Plataformas</h3>
-                    <div class="category-pills">
-                        <button class="category-pill active" data-category="all">Todos</button>
-                        <button class="category-pill" data-category="netflix">Netflix</button>
-                        <button class="category-pill" data-category="disney">Disney+</button>
-                        <button class="category-pill" data-category="spotify">Spotify</button>
-                        <button class="category-pill" data-category="hbo">HBO Max</button>
-                    </div>
+            </div>
+
+            <div class="filter-section">
+                <h4>Estado</h4>
+                <div class="status-filters">
+                    <label class="status-checkbox">
+                        <input type="checkbox" checked>
+                        <span class="checkbox-custom"></span>
+                        <span>Activos</span>
+                    </label>
+                    <label class="status-checkbox">
+                        <input type="checkbox">
+                        <span class="checkbox-custom"></span>
+                        <span>Verificados</span>
+                    </label>
                 </div>
             </div>
         </aside>
 
-        <!-- Contenido Principal -->
-        <main class="bins-content">
-            <header class="section-header">
-                <h1>Premium Bins Collection</h1>
-                <div class="status-info">
-                    <div class="status-item">
+        <!-- Contenido de Bins -->
+        <section class="bins-content">
+            <header class="content-header">
+                <h1>Premium Bins</h1>
+                <div class="header-stats">
+                    <div class="stat">
                         <i class="fas fa-check-circle"></i>
-                        <span>Bins Verificados</span>
+                        <span>100% Verificados</span>
                     </div>
-                    <div class="status-item">
+                    <div class="stat">
                         <i class="fas fa-clock"></i>
-                        <span>Actualizado: <time>Febrero 2025</time></span>
+                        <span>Actualizado: <time>Febrero 2024</time></span>
                     </div>
                 </div>
             </header>
 
-            <div id="binsGrid" class="bins-grid">
+            <!-- Filtros Móviles -->
+            <div class="mobile-filters mobile-only">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar bins...">
+                </div>
+                <div class="filters-scroll">
+                    <button class="filter-chip active" data-platform="all">
+                        Todos
+                    </button>
+                    <button class="filter-chip" data-platform="netflix">
+                        Netflix
+                    </button>
+                    <button class="filter-chip" data-platform="disney">
+                        Disney+
+                    </button>
+                    <button class="filter-chip" data-platform="spotify">
+                        Spotify
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Bins -->
+            <div class="bins-grid" id="binsGrid">
                 <!-- Los bins se cargarán dinámicamente aquí -->
             </div>
-        </main>
-    </div>
+        </section>
+    </main>
 
-    <!-- JavaScript -->
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script src="../js/bins.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>

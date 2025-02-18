@@ -1,39 +1,191 @@
-// public/js/bins.js
-document.addEventListener('DOMContentLoaded', () => {
-    // Referencias a elementos del DOM
-    const binsGrid = document.getElementById('binsGrid');
-    const searchInput = document.querySelector('.search-input');
-    const categoryPills = document.querySelectorAll('.category-pill');
+// public/js/bins-premium.js
 
-    // Estado
-    let binsData = [];
-    let currentFilters = {
-        search: '',
-        category: 'all'
-    };
+class BinsManager {
+    constructor() {
+        // Estado
+        this.state = {
+            bins: [],
+            filters: {
+                search: '',
+                platform: 'all',
+                active: true,
+                verified: false
+            }
+        };
 
-    // Función para cargar los bins
-    const loadBins = async () => {
+        // Referencias DOM
+        this.elements = {
+            binsGrid: document.getElementById('binsGrid'),
+            searchInputs: document.querySelectorAll('.search-box input'),
+            platformButtons: document.querySelectorAll('[data-platform]'),
+            statusCheckboxes: document.querySelectorAll('.status-checkbox input'),
+            menuButton: document.querySelector('.menu-button'),
+            sidebar: document.querySelector('.sidebar'),
+            overlay: document.querySelector('.sidebar-overlay'),
+            menuIcon: document.querySelector('.menu-button i'),
+            clearFilters: document.querySelector('.clear-filters')
+        };
+
+        this.init();
+    }
+
+    async init() {
+        // Inicializar Particles.js
+        this.initParticles();
+
+        // Inicializar eventos
+        this.initEvents();
+
+        // Cargar bins
+        await this.loadBins();
+    }
+
+    initParticles() {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "opacity": {
+                    "value": 0.1,
+                    "random": false
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.1,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                }
+            },
+            "retina_detect": true
+        });
+    }
+
+    initEvents() {
+        // Búsqueda
+        this.elements.searchInputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                this.state.filters.search = e.target.value;
+                this.renderBins();
+            });
+        });
+
+        // Filtros de plataforma
+        this.elements.platformButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                this.elements.platformButtons.forEach(btn => 
+                    btn.classList.remove('active'));
+                button.classList.add('active');
+                this.state.filters.platform = button.dataset.platform;
+                this.renderBins();
+            });
+        });
+
+        // Checkboxes de estado
+        this.elements.statusCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const filterType = checkbox.closest('.status-checkbox').dataset.filter;
+                this.state.filters[filterType] = checkbox.checked;
+                this.renderBins();
+            });
+        });
+
+        // Sidebar móvil
+        this.initSidebar();
+
+        // Limpiar filtros
+        this.elements.clearFilters?.addEventListener('click', () => {
+            this.clearFilters();
+        });
+    }
+
+    initSidebar() {
+        // Toggle sidebar
+        this.elements.menuButton?.addEventListener('click', () => {
+            this.toggleSidebar();
+        });
+
+        // Cerrar con overlay
+        this.elements.overlay?.addEventListener('click', () => {
+            this.toggleSidebar(false);
+        });
+
+        // Cerrar con Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') this.toggleSidebar(false);
+        });
+
+        // Cerrar en resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 1024) this.toggleSidebar(false);
+        });
+    }
+
+    toggleSidebar(show) {
+        const isActive = show ?? !this.elements.sidebar?.classList.contains('active');
+        this.elements.sidebar?.classList.toggle('active', isActive);
+        this.elements.overlay?.classList.toggle('active', isActive);
+        if (this.elements.menuIcon) {
+            this.elements.menuIcon.className = `fas fa-${isActive ? 'times' : 'bars'}`;
+        }
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    }
+
+    async loadBins() {
         try {
-            showLoader();
+            this.showLoader();
             const response = await fetch('/api/bins');
             const data = await response.json();
-            binsData = data.bins;
-            renderBins(filterBins(binsData));
+            this.state.bins = data.bins;
+            this.renderBins();
         } catch (error) {
-            showError('Error al cargar los bins. Por favor, intenta de nuevo.');
             console.error('Error loading bins:', error);
-        } finally {
-            hideLoader();
+            this.showError('Error al cargar los bins. Por favor, intenta de nuevo.');
         }
-    };
+    }
 
-    // Función para renderizar los bins
-    const renderBins = (bins) => {
-        if (!binsGrid) return;
+    renderBins() {
+        if (!this.elements.binsGrid) return;
 
-        if (bins.length === 0) {
-            binsGrid.innerHTML = `
+        const filteredBins = this.filterBins();
+
+        if (filteredBins.length === 0) {
+            this.elements.binsGrid.innerHTML = `
                 <div class="no-results">
                     <i class="fas fa-search"></i>
                     <p>No se encontraron bins con los filtros actuales</p>
@@ -42,132 +194,133 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        binsGrid.innerHTML = bins.map((bin, index) => `
+        this.elements.binsGrid.innerHTML = filteredBins.map((bin, index) => `
             <div class="bin-card" data-platform="${bin.platform.toLowerCase()}"
-                 style="animation-delay: ${index * 100}ms">
+                 style="animation: cardReveal 0.5s ease forwards ${index * 0.1}s">
                 <div class="bin-header">
-                    <img src="${bin.image}" alt="${bin.platform}" class="platform-icon">
-                    <h3 class="platform-name">${bin.platform}</h3>
-                    ${bin.isActive ? '<span class="badge badge-success">Verificado</span>' : ''}
+                    <img src="${bin.image}" alt="${bin.platform}" class="bin-platform">
+                    <div class="bin-info">
+                        <div class="bin-name">${bin.platform}</div>
+                        <div class="bin-location">
+                            <i class="fas fa-globe"></i>
+                            ${bin.location}
+                        </div>
+                    </div>
                 </div>
 
-                <div class="bin-content">
-                    <div class="bin-number">
-                        <i class="fas fa-credit-card"></i>
-                        <span>${maskBin(bin.bin)}</span>
-                        <button class="copy-btn" data-bin="${bin.bin}" title="Copiar bin">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                    </div>
+                <div class="bin-number">
+                    <span class="bin-digits">${this.formatBin(bin.bin)}</span>
+                    <button class="copy-btn" data-bin="${bin.bin}" title="Copiar">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
 
-                    <div class="bin-details">
-                        <div class="detail-item">
-                            <i class="fas fa-globe"></i>
-                            <span>${bin.location}</span>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-info-circle"></i>
-                            <span>${bin.tip}</span>
-                        </div>
-                        ${bin.success_rate ? `
-                        <div class="detail-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Tasa de éxito: ${bin.success_rate}%</span>
-                        </div>
-                        ` : ''}
+                <div class="bin-details">
+                    <div class="detail-item">
+                        <i class="fas fa-info-circle"></i>
+                        <span>${bin.tip}</span>
                     </div>
                 </div>
 
                 <div class="bin-footer">
                     <span class="bin-date">
-                        <i class="fas fa-calendar"></i>
-                        ${formatDate(bin.verifiedDate)}
+                        <i class="fas fa-clock"></i>
+                        ${this.formatDate(bin.verifiedDate)}
                     </span>
-                    <span class="status-badge ${bin.isActive ? 'status-active' : 'status-expired'}">
+                    <span class="bin-status status-active">
                         ${bin.isActive ? 'Activo' : 'Expirado'}
                     </span>
                 </div>
             </div>
         `).join('');
 
-        // Inicializar los botones de copiar
-        initializeCopyButtons();
-    };
+        this.initializeCopyButtons();
+    }
 
-    // Función para filtrar bins
-    const filterBins = (bins) => {
-        return bins.filter(bin => {
-            const matchesSearch = bin.platform.toLowerCase().includes(currentFilters.search.toLowerCase()) ||
-                                bin.location.toLowerCase().includes(currentFilters.search.toLowerCase());
-            const matchesCategory = currentFilters.category === 'all' || 
-                                  bin.platform.toLowerCase() === currentFilters.category;
+    filterBins() {
+        return this.state.bins.filter(bin => {
+            const matchesSearch = bin.platform.toLowerCase().includes(this.state.filters.search.toLowerCase()) ||
+                                bin.location.toLowerCase().includes(this.state.filters.search.toLowerCase());
+            const matchesPlatform = this.state.filters.platform === 'all' || 
+                                  bin.platform.toLowerCase() === this.state.filters.platform;
+            const matchesActive = !this.state.filters.active || bin.isActive;
+            const matchesVerified = !this.state.filters.verified || bin.verified;
 
-            return matchesSearch && matchesCategory;
+            return matchesSearch && matchesPlatform && matchesActive && matchesVerified;
         });
-    };
+    }
 
-    // Función para enmascarar el número del bin
-    const maskBin = (bin) => {
-        return bin.replace(/(\d{6})(\d{6})(\d{4})/, '$1******$3');
-    };
+    formatBin(bin) {
+        const visible = bin.slice(0, 6);
+        const hidden = '••••';
+        const last = bin.slice(-4);
+        return `${visible} ${hidden} ${last}`;
+    }
 
-    // Función para formatear fechas
-    const formatDate = (dateString) => {
+    formatDate(dateString) {
         const options = { day: 'numeric', month: 'short', year: 'numeric' };
         return new Date(dateString).toLocaleDateString('es-ES', options);
-    };
+    }
 
-    // Inicializar botones de copiar
-    const initializeCopyButtons = () => {
+    initializeCopyButtons() {
         document.querySelectorAll('.copy-btn').forEach(button => {
             button.addEventListener('click', async (e) => {
                 const bin = e.currentTarget.dataset.bin;
                 try {
                     await navigator.clipboard.writeText(bin);
-                    showToast('Bin copiado al portapapeles');
+                    this.showToast('Bin copiado al portapapeles');
 
-                    // Cambiar el icono temporalmente
                     const icon = e.currentTarget.querySelector('i');
                     icon.className = 'fas fa-check';
                     setTimeout(() => {
                         icon.className = 'fas fa-copy';
                     }, 2000);
                 } catch (err) {
-                    showToast('Error al copiar el bin', 'error');
+                    this.showToast('Error al copiar el bin', 'error');
                 }
             });
         });
-    };
+    }
 
-    // Función para mostrar el loader
-    const showLoader = () => {
-        binsGrid.innerHTML = `
+    clearFilters() {
+        this.state.filters = {
+            search: '',
+            platform: 'all',
+            active: true,
+            verified: false
+        };
+
+        this.elements.searchInputs.forEach(input => input.value = '');
+        this.elements.platformButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.platform === 'all');
+        });
+        this.elements.statusCheckboxes.forEach(checkbox => {
+            checkbox.checked = checkbox.dataset.filter === 'active';
+        });
+
+        this.renderBins();
+    }
+
+    showLoader() {
+        if (!this.elements.binsGrid) return;
+        this.elements.binsGrid.innerHTML = `
             <div class="loader">
-                <div class="loader-content"></div>
+                <div class="loader-spinner"></div>
             </div>
         `;
-    };
+    }
 
-    // Función para ocultar el loader
-    const hideLoader = () => {
-        const loader = document.querySelector('.loader');
-        if (loader) {
-            loader.remove();
-        }
-    };
-
-    // Función para mostrar errores
-    const showError = (message) => {
-        binsGrid.innerHTML = `
+    showError(message) {
+        if (!this.elements.binsGrid) return;
+        this.elements.binsGrid.innerHTML = `
             <div class="error-message">
                 <i class="fas fa-exclamation-circle"></i>
                 <p>${message}</p>
             </div>
         `;
-    };
+    }
 
-    // Función para mostrar notificaciones toast
-    const showToast = (message, type = 'success') => {
+    showToast(message, type = 'success') {
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
         toast.innerHTML = `
@@ -176,38 +329,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         document.body.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('show'));
 
-        // Animar entrada
-        setTimeout(() => toast.classList.add('show'), 10);
-
-        // Animar salida y remover
         setTimeout(() => {
             toast.classList.remove('show');
             setTimeout(() => toast.remove(), 300);
         }, 3000);
-    };
+    }
+}
 
-    // Event Listeners
-    searchInput?.addEventListener('input', (e) => {
-        currentFilters.search = e.target.value;
-        renderBins(filterBins(binsData));
-    });
-
-    categoryPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            // Actualizar pills activas
-            categoryPills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-
-            // Actualizar filtros y renderizar
-            currentFilters.category = pill.dataset.category;
-            renderBins(filterBins(binsData));
-        });
-    });
-
-    // Inicializar
-    loadBins();
-
-    // Opcional: Recargar bins cada cierto tiempo
-    setInterval(loadBins, 300000); // Cada 5 minutos
+// Inicializar
+document.addEventListener('DOMContentLoaded', () => {
+    window.binsManager = new BinsManager();
 });

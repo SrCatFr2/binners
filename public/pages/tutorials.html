@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/base.css">
     <link rel="stylesheet" href="../css/layout.css">
     <link rel="stylesheet" href="../css/components.css">
-    <link rel="stylesheet" href="../css/pages/tutorials.css">
+    <link rel="stylesheet" href="../css/pages/tutorials-premium.css">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -17,6 +17,7 @@
 <body>
     <div class="bg-gradient"></div>
     <div class="noise-overlay"></div>
+    <div id="particles-js"></div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -27,8 +28,7 @@
             </a>
             <div class="nav-links">
                 <a href="/pages/bins.html" class="nav-link">Bins</a>
-                <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
-                <a href="/pages/community.html" class="nav-link">Comunidad</a>
+                <a href="/pages/tutorials.html" class="nav-link active">Tutoriales</a>
             </div>
             <a href="https://discord.gg/aeolous" class="btn btn-discord">
                 <i class="fab fa-discord"></i>
@@ -37,46 +37,43 @@
         </div>
     </nav>
 
-    <div class="tutorials-container">
+    <!-- Contenido Principal -->
+    <main class="tutorials-container">
         <!-- Header -->
         <header class="tutorials-header">
-            <h1 class="tutorials-title">Tutoriales Premium</h1>
+            <h1>Tutoriales Premium</h1>
             <p class="header-description">
-                Aprende a usar los bins correctamente con nuestros tutoriales verificados y actualizados.
+                Aprende a usar los bins correctamente con nuestros tutoriales verificados
             </p>
             
-            <div class="category-pills">
-                <button class="category-pill active" data-category="all">
+            <div class="platform-filters">
+                <button class="platform-btn active" data-platform="all">
                     <i class="fas fa-th-large"></i>
                     <span>Todos</span>
                 </button>
-                <button class="category-pill" data-category="netflix">
-                    <i class="fas fa-play"></i>
+                <button class="platform-btn" data-platform="netflix">
+                    <img src="../images/platforms/netflix.png" alt="Netflix">
                     <span>Netflix</span>
                 </button>
-                <button class="category-pill" data-category="disney">
-                    <i class="fas fa-play"></i>
+                <button class="platform-btn" data-platform="disney">
+                    <img src="../images/platforms/disney.png" alt="Disney+">
                     <span>Disney+</span>
                 </button>
-                <button class="category-pill" data-category="spotify">
-                    <i class="fas fa-music"></i>
+                <button class="platform-btn" data-platform="spotify">
+                    <img src="../images/platforms/spotify.png" alt="Spotify">
                     <span>Spotify</span>
-                </button>
-                <button class="category-pill" data-category="basics">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span>Básicos</span>
                 </button>
             </div>
         </header>
 
-        <!-- Contenido Principal -->
-        <section class="tutorials-content">
-            <div id="tutorialsGrid" class="tutorials-grid">
-                <!-- Los tutoriales se cargarán dinámicamente aquí -->
-            </div>
+        <!-- Grid de Tutoriales -->
+        <section class="tutorials-grid" id="tutorialsGrid">
+            <!-- Los tutoriales se cargarán dinámicamente aquí -->
         </section>
-    </div>
+    </main>
 
-    <script src="../js/tutorials.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="../js/tutorials-premium.js"></script>
 </body>
 </html>

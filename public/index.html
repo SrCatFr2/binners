@@ -4,120 +4,145 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Binners • Premium Bins Collection</title>
-
-       <!-- Discord Embed Meta Tags -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://binners.vercel.app/">
-    <meta property="og:title" content="Binners • Premium Bins Collection">
-    <meta property="og:description" content="Accede a nuestra colección exclusiva de bins verificados y tutoriales premium. Únete a nuestra comunidad de más de 2.7K miembros.">
-    <meta property="og:image" content="https://tu-dominio.com/images/embed.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Discord Specific -->
-    <meta name="theme-color" content="#5865F2">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="discord:invite" content="aeolous">
     
     <!-- CSS -->
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/components.css" />
-    <link rel="stylesheet" href="/css/pages/home.css" />
+    <link rel="stylesheet" href="/css/pages/home-premium.css" />
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body>
+    <!-- Efectos de Fondo -->
     <div class="bg-gradient"></div>
     <div class="noise-overlay"></div>
+    <div id="particles-js"></div>
 
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container nav-content">
-            <a href="/" class="logo">
-                <span class="logo-icon">⬡</span>
-                <span>binners</span>
-            </a>
-            <div class="nav-links">
-                <a href="/bins" class="nav-link">Bins</a>
-                <a href="/tutorials" class="nav-link">Tutoriales</a>
-                <a href="/community" class="nav-link">Comunidad</a>
-            </div>
-            <a href="https://discord.gg/aeolous" class="btn btn-discord">
-                <i class="fab fa-discord"></i>
-                <span>Unirse</span>
-            </a>
+    <!-- En el index.html -->
+<!-- Navbar (visible en desktop) -->
+<nav class="navbar desktop-only">
+    <div class="container nav-content">
+        <a href="/" class="logo">
+            <span class="logo-icon">⬡</span>
+            <span>binners</span>
+        </a>
+        <div class="nav-links">
+            <a href="/pages/bins.html" class="nav-link">Bins</a>
+            <a href="/pages/tutorials.html" class="nav-link">Tutoriales</a>
         </div>
+        <a href="https://discord.gg/aeolous" class="btn btn-discord">
+            <i class="fab fa-discord"></i>
+            <span>Unirse</span>
+        </a>
+    </div>
+</nav>
+
+<!-- Sidebar y botón (visibles en móvil) -->
+<button class="menu-button mobile-only" aria-label="Menu">
+    <i class="fas fa-bars"></i>
+</button>
+
+<aside class="sidebar mobile-only">
+    <div class="sidebar-header">
+        <a href="/" class="logo">
+            <span class="logo-icon">⬡</span>
+            <span>binners</span>
+        </a>
+    </div>
+    
+    <nav class="sidebar-links">
+        <a href="/pages/bins.html" class="sidebar-link">
+            <i class="fas fa-credit-card"></i>
+            <span>Bins</span>
+        </a>
+        <a href="/pages/tutorials.html" class="sidebar-link">
+            <i class="fas fa-play-circle"></i>
+            <span>Tutoriales</span>
+        </a>
+        <a href="https://discord.gg/aeolous" class="sidebar-link">
+            <i class="fab fa-discord"></i>
+            <span>Discord</span>
+        </a>
     </nav>
+</aside>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Premium Bins Collection</h1>
-                <p class="hero-description">
-                    Accede a nuestra colección exclusiva de bins verificados y tutoriales premium.
-                </p>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    Premium Bins
+                    <span class="gradient-text">Collection</span>
+                </h1>
                 
                 <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">100+</div>
-                        <div class="stat-label">Bins Activos</div>
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Bins</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-label">Tutoriales</div>
+                    <div class="stat">
+                        <span class="stat-number">24 Dias a la semana.</span>
+                        <span class="stat-label">Soporte</span>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2700</div>
-                        <div class="stat-label">Miembros</div>
+                    <div class="stat">
+                        <span class="stat-number">2700</span>
+                        <span class="stat-label">Users</span>
                     </div>
                 </div>
 
                 <div class="hero-cta">
-                    <a href="/bins" class="btn btn-primary">
-                        <i class="fas fa-credit-card"></i>
-                        <span>Ver Bins</span>
+                    <a href="/pages/bins.html" class="btn btn-primary">
+                        Acceder ahora
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="https://discord.gg/aeolous" class="btn btn-discord">
-                        <i class="fab fa-discord"></i>
-                        <span>Unirse a Discord</span>
-                    </a>
+                </div>
+            </div>
+
+            <div class="cards-showcase">
+                <div class="credit-card" data-tilt>
+                    <div class="card-chip"></div>
+                    <div class="card-logo">
+                        <img src="/images/platforms/netflix.png" alt="Netflix">
+                    </div>
+                    <div class="card-number">4147 •••• •••• 82XX</div>
+                    <div class="card-footer">
+                        <div class="card-holder">Premium Verified</div>
+                        <div class="card-expiry">04/25</div>
+                    </div>
+                </div>
+
+                <div class="credit-card" data-tilt>
+                    <div class="card-chip"></div>
+                    <div class="card-logo">
+                        <img src="/images/platforms/disney.png" alt="Disney+">
+                    </div>
+                    <div class="card-number">5123 •••• •••• 23XX</div>
+                    <div class="card-footer">
+                        <div class="card-holder">Premium Verified</div>
+                        <div class="card-expiry">05/26</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="platforms-bar">
+            <div class="container">
+                <div class="platforms-grid">
+                    <img src="/images/platforms/netflix.png" alt="Netflix">
+                    <img src="/images/platforms/disney.png" alt="Disney+">
+                    <img src="/images/platforms/spotify.png" alt="Spotify">
+                    <img src="/images/platforms/hbo.png" alt="HBO Max">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Bins Verificados</h3>
-                    <p>Todos nuestros bins son revisados y actualizados regularmente para garantizar su funcionamiento.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-play-circle"></i>
-                    </div>
-                    <h3>Tutoriales Detallados</h3>
-                    <p>Aprende a usar los bins correctamente con nuestros tutoriales exclusivos paso a paso.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Únete a nuestra comunidad para acceder a beneficios exclusivos y sorteos diarios.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script src="/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="/js/home-premium.js"></script>
 </body>
 </html>
