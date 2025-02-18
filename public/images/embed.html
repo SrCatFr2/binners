@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 5rem;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            font-size: 1.5rem;
+            color: #a3a3a3;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .stat-label {
+            color: #a3a3a3;
+            font-size: 1rem;
+        }
+
+        .gradient-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right,
+                rgba(99, 102, 241, 0.15),
+                transparent 70%);
+        }
+
+        .platforms {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"></div>
+    <div class="content">
+        <div class="logo">
+            <span class="logo-icon">⬡</span>
+            <span>binners</span>
+        </div>
+        <h1 class="title">Premium Bins Collection</h1>
+        <p class="description">Bins verificados y tutoriales premium</p>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Bins Activos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Tutoriales</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">2.7K</div>
+                <div class="stat-label">Miembros</div>
+            </div>
+        </div>
+
+        <div class="platforms">
+            <img src="platforms/netflix.png" alt="Netflix" class="platform-icon">
+            <img src="platforms/disney.png" alt="Disney+" class="platform-icon">
+            <img src="platforms/spotify.png" alt="Spotify" class="platform-icon">
+        </div>
+    </div>
+</body>
+</html>
