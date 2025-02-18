@@ -1,9 +1,11 @@
 [
   {
-    "image": "/images/prime.png",
-    "bin": "434769026852xxxx|09|2029",
-    "platform": "Prime Video",
-    "location": "Estados Unidos",
-    "tip": "Sacar live CCN"
+      "platform": "Netflix",
+      "bin": "414718143780xxxx",
+      "location": "Estados Unidos",
+      "tip": "Usar con VPN residencial",
+      "isActive": true,
+      "verifiedDate": "2024-02-17",
+      "image": "../images/platforms/netflix.png"
   }
 ]
