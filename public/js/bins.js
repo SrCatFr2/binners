@@ -43,6 +43,42 @@ class BinsManager {
                     "isActive": true,
                     "verifiedDate": "2025-02-17",
                     "image": "/images/platforms/express.png"
+                },
+                {
+                    "platform": "Netflix",
+                    "bin": "552637429925xxxx|02|2026",
+                    "location": "Propia o Brasil",
+                    "tip": "Usar CCN Live.",
+                    "isActive": true,
+                    "verifiedDate": "2025-02-18",
+                    "image": "/images/platforms/netflix.png"
+                },
+{
+                    "platform": "Netflix",
+                    "bin": "545973689005xxxx|04|2026",
+                    "location": "Brasil",
+                    "tip": "Usar CCN Live.",
+                    "isActive": true,
+                    "verifiedDate": "2025-02-18",
+                    "image": "/images/platforms/netflix.png"
+                },
+{
+                    "platform": "Canva",
+                    "bin": " 402766585480",
+                    "location": "Propia, pago a Mexico",
+                    "tip": "Usar Lives o Generadas.",
+                    "isActive": true,
+                    "verifiedDate": "2025-02-18",
+                    "image": "/images/platforms/canva.png"
+                },
+{
+                    "platform": "Prime Video",
+                    "bin": "416916144434xxxx|03|2029|xxx",
+                    "location": "Mexico",
+                    "tip": "Calar plan anual.",
+                    "isActive": true,
+                    "verifiedDate": "2025-02-18",
+                    "image": "/images/platforms/prime.png"
                 }
             ];
 
